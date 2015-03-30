@@ -1,5 +1,6 @@
-pluginname=ToDo
-pluginclassname=TodoPlugin
+pluginname=WeatherWidget
+pluginclassname=WeatherWidgetPlugin
 origin=intelec
-version=0.1a
+version=0.8
 studipMinVersion=3.1
+description=Zeigt das aktuelle Wetter an
