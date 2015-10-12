@@ -10,6 +10,7 @@
  */
 class WeatherWidgetPlugin extends StudIPPlugin implements PortalPlugin {
 
+    const APIKEY = '02f7c0bdaae418cfad0f061298b3f8c3';
     const URL = "http://api.openweathermap.org/data/2.5/weather?q=";
     const FORECAST_URL = "http://api.openweathermap.org/data/2.5/forecast/daily?q=";
     const LOCATION = "passau";
@@ -29,7 +30,7 @@ class WeatherWidgetPlugin extends StudIPPlugin implements PortalPlugin {
         $cache = StudipCacheFactory::getCache();
         if (!$data = $cache->read(self::CACHENAME . "/current")) {
             ini_set('default_socket_timeout', 2);
-            $handle = fopen(self::URL . self::LOCATION, "r");
+            $handle = fopen(self::URL . self::LOCATION . '&APPID=' . self::APIKEY, "r");
             if ($handle) {
                 $data = fgets($handle);
             }
@@ -52,7 +53,7 @@ class WeatherWidgetPlugin extends StudIPPlugin implements PortalPlugin {
         $cache = StudipCacheFactory::getCache();
         if (!$data = $cache->read(self::CACHENAME . "/forecast")) {
             ini_set('default_socket_timeout', 2);
-            $handle = fopen(self::FORECAST_URL . self::LOCATION, "r");
+            $handle = fopen(self::FORECAST_URL . self::LOCATION . '&APPID=' . self::APIKEY, "r");
             if ($handle) {
                 $data = fgets($handle);
             }
